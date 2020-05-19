@@ -48,6 +48,7 @@ class Youtube_Subscription_Widget extends WP_Widget {
 
 		$channel = ! empty( $instance['channel'] ) ? $instance['channel'] : esc_html__( 'mychannel', 'youtubesubscription' );
 		$layout = ! empty( $instance['layout'] ) ? $instance['layout'] : esc_html__( 'default', 'youtubesubscription' );
+		$count = ! empty( $instance['count'] ) ? $instance['count'] : esc_html__( 'default', 'youtubesubscription' );
 		
 
 
@@ -98,7 +99,23 @@ class Youtube_Subscription_Widget extends WP_Widget {
 			<option value="full" <?php echo ($layout=='full')? 'selected':'';?>>Full</option>
 		</select>
 		</p>
+          
+          <!--Count-->
+		<p>
+			<label for="<?php echo esc_attr( $this->get_field_id( 'count' ) ); ?>">
+				<?php esc_attr_e( 'Count:', 'youtubesubscription' ); ?>
+					
+			</label> 
 
+			<select
+			class="widefat" 
+			id="<?php echo esc_attr( $this->get_field_id( 'count' ) ); ?>" 
+			name="<?php echo esc_attr( $this->get_field_name( 'count' ) ); ?>" 
+			>
+			<option value="default" <?php echo ($count=='default')? 'selected':'';?>>Default</option>
+			<option value="hidden" <?php echo ($count=='hidden')? 'selected':'';?>>Hidden</option>
+		</select>
+		</p>
 		
 		<?php 
 	}
@@ -118,6 +135,7 @@ class Youtube_Subscription_Widget extends WP_Widget {
 		$instance['title'] = ( ! empty( $new_instance['title'] ) ) ? sanitize_text_field( $new_instance['title'] ) : '';
 		$instance['channel'] = ( ! empty( $new_instance['channel'] ) ) ? sanitize_text_field( $new_instance['channel'] ) : '';
 		$instance['layout'] = ( ! empty( $new_instance['layout'] ) ) ? sanitize_text_field( $new_instance['layout'] ) : '';
+		$instance['count'] = ( ! empty( $new_instance['count'] ) ) ? sanitize_text_field( $new_instance['count'] ) : '';
 		
 		return $instance;
 	}
