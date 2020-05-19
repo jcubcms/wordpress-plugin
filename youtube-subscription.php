@@ -17,3 +17,14 @@ if(!defined('ABSPATH')){
 
 // Loading script
 require_once(plugin_dir_path(__FILE__).'/includes/youtube-subscription-scripts.php');
+
+// Loading Class
+require_once(plugin_dir_path(__FILE__).'/includes/youtube-subscription-class.php');
+
+//Registering widgets
+function register_youtubesubscription(){
+	
+register_widget('Youtube_Subscription_Widget');
+}
+//hooking function
+add_action('widgets_init','register_youtubesubscription');

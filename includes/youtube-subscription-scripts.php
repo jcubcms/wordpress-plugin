@@ -9,6 +9,10 @@ function youtubesubscritpion_add_scripts(){
 	//Adding main js file
 	wp_enqueue_script('youtubesubscritpion-main-script',plugins_url().'/youtube-subscription/js/main.js');
 
+	//Adding Google Script
+	wp_register_script('google','https://apis.google.com/js/platform.js');
+	wp_enqueue_script('google');
+
 }
 
 //Hook up function
