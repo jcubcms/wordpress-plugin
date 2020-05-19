@@ -31,7 +31,7 @@ class Youtube_Subscription_Widget extends WP_Widget {
 			echo $args['before_title'] . apply_filters( 'widget_title', $instance['title'] ) . $args['after_title'];
 		}
 		//Widget actual content output
-		echo '<div class="g-ytsubscribe" data-channel="GoogleDevelopers" data-layout="default" data-count="default"></div>';
+		echo '<div class="g-ytsubscribe" data-channel="'.$instance['channel'].'" data-layout="'.$instance['layout'].'" data-count="'.$instance['count'].'"></div>';
 		echo $args['after_widget'];//Want to display anything before widget
 	}
 
@@ -45,8 +45,10 @@ class Youtube_Subscription_Widget extends WP_Widget {
 
 	public function form( $instance ) {
 		$title = ! empty( $instance['title'] ) ? $instance['title'] : esc_html__( 'YouTube Subscription', 'youtubesubscription' );
-		
 
+		$channel = ! empty( $instance['channel'] ) ? $instance['channel'] : esc_html__( 'mychannel', 'youtubesubscription' );
+		$layout = ! empty( $instance['layout'] ) ? $instance['layout'] : esc_html__( 'default', 'youtubesubscription' );
+		
 
 
 		?>
@@ -63,6 +65,38 @@ class Youtube_Subscription_Widget extends WP_Widget {
 			name="<?php echo esc_attr( $this->get_field_name( 'title' ) ); ?>" 
 			type="text" 
 			value="<?php echo esc_attr( $title ); ?>">
+		</p>
+
+		<!--Channel-->
+		<p>
+			<label for="<?php echo esc_attr( $this->get_field_id( 'channel' ) ); ?>">
+				<?php esc_attr_e( 'Channel:', 'youtubesubscription' ); ?>
+					
+			</label> 
+
+			<input 
+			class="widefat" 
+			id="<?php echo esc_attr( $this->get_field_id( 'channel' ) ); ?>" 
+			name="<?php echo esc_attr( $this->get_field_name( 'channel' ) ); ?>" 
+			type="text" 
+			value="<?php echo esc_attr( $channel ); ?>">
+		</p>
+
+		<!--Layout-->
+		<p>
+			<label for="<?php echo esc_attr( $this->get_field_id( 'layout' ) ); ?>">
+				<?php esc_attr_e( 'Layout:', 'youtubesubscription' ); ?>
+					
+			</label> 
+
+			<select
+			class="widefat" 
+			id="<?php echo esc_attr( $this->get_field_id( 'layout' ) ); ?>" 
+			name="<?php echo esc_attr( $this->get_field_name( 'layout' ) ); ?>" 
+			>
+			<option value="default" <?php echo ($layout=='default')? 'selected':'';?>>Default</option>
+			<option value="full" <?php echo ($layout=='full')? 'selected':'';?>>Full</option>
+		</select>
 		</p>
 
 		
@@ -82,6 +116,8 @@ class Youtube_Subscription_Widget extends WP_Widget {
 	public function update( $new_instance, $old_instance ) {
 		$instance = array();
 		$instance['title'] = ( ! empty( $new_instance['title'] ) ) ? sanitize_text_field( $new_instance['title'] ) : '';
+		$instance['channel'] = ( ! empty( $new_instance['channel'] ) ) ? sanitize_text_field( $new_instance['channel'] ) : '';
+		$instance['layout'] = ( ! empty( $new_instance['layout'] ) ) ? sanitize_text_field( $new_instance['layout'] ) : '';
 		
 		return $instance;
 	}
