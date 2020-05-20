@@ -2,15 +2,15 @@
 /**
  * Plugin Name:    	Youtube Subscription
  * Plugin URI:  	
- * Description:     Display Youtube subscribe button  and count 
+ * Description:     Youtube Channel Subscription  Plugin for wordpress
  * Author:          Yam Bahadur Poudel
  * Version:			1.0.0
- * Author URI:      http://yambahadurp.sgedu.site/
+ * Author URI:      
  * License:         GPL v2 or later
  * License URI:     https://www.gnu.org/licenses/gpl-2.0.html
  */
 
-//If accessed directly then exit
+//Preventing direct access
 
 if(!defined('ABSPATH')){
 	exit;
