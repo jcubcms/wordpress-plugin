@@ -1,12 +1,13 @@
 <?php
 /**
- * Plugin Name:    	 Youtube Subscription
- * Plugin URI:  	http://yambahadurp.sgedu.site/
+ * Plugin Name:    	Youtube Subscription
+ * Plugin URI:  	
  * Description:     Display Youtube subscribe button  and count 
- * Author:            Yam Bahadur Poudel
- * Author URI:       http://yambahadurp.sgedu.site/
- * License:           GPL v2 or later
- * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
+ * Author:          Yam Bahadur Poudel
+ * Version:			1.0.0
+ * Author URI:      http://yambahadurp.sgedu.site/
+ * License:         GPL v2 or later
+ * License URI:     https://www.gnu.org/licenses/gpl-2.0.html
  */
 
 //If accessed directly then exit

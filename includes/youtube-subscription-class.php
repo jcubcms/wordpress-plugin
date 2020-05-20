@@ -31,8 +31,38 @@ class Youtube_Subscription_Widget extends WP_Widget {
 			echo $args['before_title'] . apply_filters( 'widget_title', $instance['title'] ) . $args['after_title'];
 		}
 		//Widget actual content output
-		echo '<div class="g-ytsubscribe" data-channel="'.$instance['channel'].'" data-layout="'.$instance['layout'].'" data-count="'.$instance['count'].'"></div>';
+        $theme_name=$instance['theme'];
+        if($theme_name=='dark'){
+        	echo "<div  class='dark-theme'>";
+        	echo 
+		' 
+			<div 
+			class="g-ytsubscribe" 
+			data-channelid="'.$instance['channel_id'].'" 
+			data-layout="'.$instance['layout'].'"
+			data-theme="'.$instance['theme'].'" 
+			data-count="'.$instance['count'].'"
+			>
+			</div>
+		';
+        	echo '</div>';
+        }
+        else{
+
+		echo 
+		' 
+			<div 
+			class="g-ytsubscribe" 
+			data-channelid="'.$instance['channel_id'].'" 
+			data-layout="'.$instance['layout'].'"
+			data-theme="'.$instance['theme'].'" 
+			data-count="'.$instance['count'].'"
+			>
+			</div>
+		';
+	}
 		echo $args['after_widget'];//Want to display anything before widget
+	
 	}
 
 	/**
@@ -46,11 +76,11 @@ class Youtube_Subscription_Widget extends WP_Widget {
 	public function form( $instance ) {
 		$title = ! empty( $instance['title'] ) ? $instance['title'] : esc_html__( 'YouTube Subscription', 'youtubesubscription' );
 
-		$channel = ! empty( $instance['channel'] ) ? $instance['channel'] : esc_html__( 'mychannel', 'youtubesubscription' );
+		$channel_id = ! empty( $instance['channel_id'] ) ? $instance['channel_id'] : esc_html__( 'UCuWW2AYNVJjlmtMboHwdJNQ', 'youtubesubscription' );
 		$layout = ! empty( $instance['layout'] ) ? $instance['layout'] : esc_html__( 'default', 'youtubesubscription' );
 		$count = ! empty( $instance['count'] ) ? $instance['count'] : esc_html__( 'default', 'youtubesubscription' );
+		$theme = ! empty( $instance['theme'] ) ? $instance['theme'] : esc_html__( 'deault', 'youtubesubscription' );
 		
-
 
 		?>
 		<!--Title-->
@@ -70,17 +100,17 @@ class Youtube_Subscription_Widget extends WP_Widget {
 
 		<!--Channel-->
 		<p>
-			<label for="<?php echo esc_attr( $this->get_field_id( 'channel' ) ); ?>">
-				<?php esc_attr_e( 'Channel:', 'youtubesubscription' ); ?>
+			<label for="<?php echo esc_attr( $this->get_field_id( 'channel_id' ) ); ?>">
+				<?php esc_attr_e( 'YouTubeChannel ID:', 'youtubesubscription' ); ?>
 					
 			</label> 
 
 			<input 
 			class="widefat" 
-			id="<?php echo esc_attr( $this->get_field_id( 'channel' ) ); ?>" 
-			name="<?php echo esc_attr( $this->get_field_name( 'channel' ) ); ?>" 
+			id="<?php echo esc_attr( $this->get_field_id( 'channel_id' ) ); ?>" 
+			name="<?php echo esc_attr( $this->get_field_name( 'channel_id' ) ); ?>" 
 			type="text" 
-			value="<?php echo esc_attr( $channel ); ?>">
+			value="<?php echo esc_attr( $channel_id ); ?>">
 		</p>
 
 		<!--Layout-->
@@ -116,6 +146,23 @@ class Youtube_Subscription_Widget extends WP_Widget {
 			<option value="hidden" <?php echo ($count=='hidden')? 'selected':'';?>>Hidden</option>
 		</select>
 		</p>
+
+          <!--Theme-->
+		<p>
+			<label for="<?php echo esc_attr( $this->get_field_id( 'theme' ) ); ?>">
+				<?php esc_attr_e( 'Theme:', 'youtubesubscription' ); ?>
+					
+			</label> 
+
+			<select
+			class="widefat" 
+			id="<?php echo esc_attr( $this->get_field_id( 'theme' ) ); ?>" 
+			name="<?php echo esc_attr( $this->get_field_name( 'theme' ) ); ?>" 
+			>
+			<option value="default" <?php echo ($theme=='default')? 'selected':'';?>>Default</option>
+			<option value="dark" <?php echo ($theme=='dark')? 'selected':'';?>>Dark</option>
+		</select>
+		</p>
 		
 		<?php 
 	}
@@ -133,9 +180,10 @@ class Youtube_Subscription_Widget extends WP_Widget {
 	public function update( $new_instance, $old_instance ) {
 		$instance = array();
 		$instance['title'] = ( ! empty( $new_instance['title'] ) ) ? sanitize_text_field( $new_instance['title'] ) : '';
-		$instance['channel'] = ( ! empty( $new_instance['channel'] ) ) ? sanitize_text_field( $new_instance['channel'] ) : '';
+		$instance['channel_id'] = ( ! empty( $new_instance['channel_id'] ) ) ? sanitize_text_field( $new_instance['channel_id'] ) : '';
 		$instance['layout'] = ( ! empty( $new_instance['layout'] ) ) ? sanitize_text_field( $new_instance['layout'] ) : '';
 		$instance['count'] = ( ! empty( $new_instance['count'] ) ) ? sanitize_text_field( $new_instance['count'] ) : '';
+		$instance['theme'] = ( ! empty( $new_instance['theme'] ) ) ? sanitize_text_field( $new_instance['theme'] ) : '';
 		
 		return $instance;
 	}
