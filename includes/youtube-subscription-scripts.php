@@ -17,3 +17,5 @@ function youtubesubscritpion_add_scripts(){
 
 //Hook up function
 add_action('wp_enqueue_scripts','youtubesubscritpion_add_scripts');
+
+?>

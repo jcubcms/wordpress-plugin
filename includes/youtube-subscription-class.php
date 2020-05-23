@@ -1,4 +1,3 @@
-
 <?php 
 /**
  * Adds Youtube_Subscription widget.
@@ -30,7 +29,8 @@ class Youtube_Subscription_Widget extends WP_Widget {
 		if ( ! empty( $instance['title'] ) ) {
 			echo $args['before_title'] . apply_filters( 'widget_title', $instance['title'] ) . $args['after_title'];
 		}
-		//Widget actual content output
+		//When the dark theme is chosen 
+       
         $theme_name=$instance['theme'];
         if($theme_name=='dark'){
         	echo "<div  class='dark-theme'>";
@@ -47,6 +47,7 @@ class Youtube_Subscription_Widget extends WP_Widget {
 		';
         	echo '</div>';
         }
+        //when the default theme is chosen
         else{
 
 		echo 
@@ -75,7 +76,6 @@ class Youtube_Subscription_Widget extends WP_Widget {
 
 	public function form( $instance ) {
 		$title = ! empty( $instance['title'] ) ? $instance['title'] : esc_html__( 'YouTube Subscription', 'youtubesubscription' );
-
 		$channel_id = ! empty( $instance['channel_id'] ) ? $instance['channel_id'] : esc_html__( 'UCuWW2AYNVJjlmtMboHwdJNQ', 'youtubesubscription' );
 		$layout = ! empty( $instance['layout'] ) ? $instance['layout'] : esc_html__( 'default', 'youtubesubscription' );
 		$count = ! empty( $instance['count'] ) ? $instance['count'] : esc_html__( 'default', 'youtubesubscription' );
@@ -83,7 +83,7 @@ class Youtube_Subscription_Widget extends WP_Widget {
 		
 
 		?>
-		<!--Title-->
+		<!--Title Section-->
 		<p>
 			<label for="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>">
 				<?php esc_attr_e( 'Title:', 'youtubesubscription' ); ?>
@@ -98,7 +98,7 @@ class Youtube_Subscription_Widget extends WP_Widget {
 			value="<?php echo esc_attr( $title ); ?>">
 		</p>
 
-		<!--Channel-->
+		<!--Channel Id Section--> 
 		<p>
 			<label for="<?php echo esc_attr( $this->get_field_id( 'channel_id' ) ); ?>">
 				<?php esc_attr_e( 'YouTubeChannel ID:', 'youtubesubscription' ); ?>
@@ -113,7 +113,7 @@ class Youtube_Subscription_Widget extends WP_Widget {
 			value="<?php echo esc_attr( $channel_id ); ?>">
 		</p>
 
-		<!--Layout-->
+		<!--Layout Section-->
 		<p>
 			<label for="<?php echo esc_attr( $this->get_field_id( 'layout' ) ); ?>">
 				<?php esc_attr_e( 'Layout:', 'youtubesubscription' ); ?>
@@ -130,7 +130,7 @@ class Youtube_Subscription_Widget extends WP_Widget {
 		</select>
 		</p>
           
-          <!--Count-->
+          <!--Subscriber Count Section-->
 		<p>
 			<label for="<?php echo esc_attr( $this->get_field_id( 'count' ) ); ?>">
 				<?php esc_attr_e( 'Count:', 'youtubesubscription' ); ?>
@@ -147,7 +147,7 @@ class Youtube_Subscription_Widget extends WP_Widget {
 		</select>
 		</p>
 
-          <!--Theme-->
+          <!--Theme Section-->
 		<p>
 			<label for="<?php echo esc_attr( $this->get_field_id( 'theme' ) ); ?>">
 				<?php esc_attr_e( 'Theme:', 'youtubesubscription' ); ?>
